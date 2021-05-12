@@ -14,6 +14,6 @@ func HomePage(c *gin.Context) {
 
 func main() {
 	r := gin.Default()
-	r.GET("/", HomePage)
+	r.GET("/home", HomePage)
 	r.Run(":8080")
 }
