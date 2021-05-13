@@ -6,14 +6,22 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func HomePage(c *gin.Context) {
-	c.JSON(http.StatusOK, gin.H{
-		"message": "홈페이지 입니다.",
-	})
+type List struct {
+	Image string `json:"image"`
+	Name  string `json:"name"`
+}
+
+func ListAlbum(c *gin.Context) {
+	list1 := List{Image: "1", Name: "부산 여행"}
+	list2 := List{Image: "3", Name: "경주 여행입니다."}
+	data := make(map[int]List)
+	data[1] = list1
+	data[2] = list2
+	c.JSON(http.StatusOK, data)
 }
 
 func main() {
 	r := gin.Default()
-	r.GET("/home", HomePage)
+	r.GET("/list", ListAlbum)
 	r.Run(":8080")
 }
